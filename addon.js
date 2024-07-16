@@ -1,0 +1,1 @@
+const debouncePromise = (fn, delay) => { let timeoutId = null; let resolveList = []; return (...args) => { clearTimeout(timeoutId); return new Promise(resolve => { resolveList.push(resolve); timeoutId = setTimeout(() => { const result = fn.apply(this, args); resolveList.forEach(r => r(result)); resolveList = []; }, delay); }); }; };
